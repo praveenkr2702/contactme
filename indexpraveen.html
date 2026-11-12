@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Praveen Kumar | Ecommerce video, creative strategy & business analysis</title>
+<meta name="description" content="Praveen Kumar makes short-form product videos for ecommerce brands, plans the creative strategy behind them, and reads the numbers to see what's working.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F2F2F5;
+    --bg-deep: #E9E9EE;
+    --card: #FFFFFF;
+    --ink: #17171C;
+    --head: #6A6C75;
+    --head-fade: #C6C8CF;
+    --text: #3F4149;
+    --muted: #8A8C95;
+    --line: #E3E3E9;
+    --dash: #B9BBC4;
+
+    --green: #16A34A;
+    --deep: #0B2B1C;
+    --lime: #A3E635;
+    --sun: #FDE047;
+    --violet: #16A34A; /* accent used for icons, focus, dashes */
+    --grad-main: linear-gradient(120deg, #22C55E 0%, #A3E635 55%, #FDE047 100%);
+    --grad-text: linear-gradient(100deg, #059669 0%, #22A045 45%, #C99400 100%);
+    --grad-warm: linear-gradient(150deg, #FDE047 0%, #FACC15 100%);
+    --grad-cool: linear-gradient(150deg, #34D399 0%, #059669 100%);
+    --grad-fresh: linear-gradient(150deg, #BEF264 0%, #4ADE80 100%);
+
+    --shadow-sm: 0 1px 2px rgba(23, 23, 28, .04), 0 4px 12px rgba(23, 23, 28, .05);
+    --shadow-md: 0 2px 4px rgba(23, 23, 28, .03), 0 12px 32px -6px rgba(23, 23, 28, .10);
+    --shadow-tile: 0 10px 24px -6px rgba(23, 23, 28, .45), inset 0 1px 0 rgba(255, 255, 255, .14);
+
+    --step--1: clamp(.85rem, .83rem + .1vw, .92rem);
+    --step-0: clamp(1rem, .97rem + .15vw, 1.08rem);
+    --step-1: clamp(1.15rem, 1.08rem + .35vw, 1.35rem);
+    --step-2: clamp(1.5rem, 1.3rem + .9vw, 2rem);
+    --step-3: clamp(2.2rem, 1.6rem + 2.8vw, 4rem);
+    --step-4: clamp(2.7rem, 1.6rem + 5.2vw, 6.2rem);
+
+    --wrap: 1120px;
+    --gutter: clamp(1.1rem, 4vw, 2.5rem);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Geist", "Inter", system-ui, -apple-system, sans-serif;
+    font-size: var(--step-0);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; border-radius: 8px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+  svg { display: block; }
+
+  /* ---------- Shared pieces ---------- */
+  .pill {
+    display: inline-flex; align-items: center; gap: .55em;
+    padding: .55em 1.1em .55em .9em;
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    font-size: var(--step--1); color: var(--text); font-weight: 450;
+  }
+  .pill svg { width: 18px; height: 18px; color: var(--violet); }
+
+  .tile {
+    display: inline-grid; place-items: center;
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(160deg, #2B2B33 0%, #0E0E12 100%);
+    color: #fff; box-shadow: var(--shadow-tile);
+    flex: none;
+  }
+  .tile svg { width: 24px; height: 24px; }
+  .tile.warm  { background: linear-gradient(150deg, #F5C518 0%, #C99400 100%); color: #fff; box-shadow: 0 10px 22px -8px rgba(201,148,0,.6), inset 0 1px 0 rgba(255,255,255,.35); }
+  .tile.cool  { background: var(--grad-cool);  color: #fff; box-shadow: 0 10px 22px -8px rgba(5,150,105,.6), inset 0 1px 0 rgba(255,255,255,.3); }
+  .tile.fresh { background: linear-gradient(150deg, #84CC16 0%, #16A34A 100%); color: #fff; box-shadow: 0 10px 22px -8px rgba(74,222,128,.6), inset 0 1px 0 rgba(255,255,255,.35); }
+  .tile.main  { background: linear-gradient(135deg, #16A34A 0%, #5BAA1A 55%, #D4A20A 100%); color: #fff; box-shadow: 0 12px 26px -8px rgba(101,163,13,.65), inset 0 1px 0 rgba(255,255,255,.35); }
+  .tile.warm, .tile.cool, .tile.fresh, .tile.main { text-shadow: 0 1px 2px rgba(0,40,10,.3); }
+  .tile.warm svg, .tile.cool svg, .tile.fresh svg, .tile.main svg { filter: drop-shadow(0 1px 1.5px rgba(0,40,10,.3)); }
+  .tile.light {
+    background: linear-gradient(160deg, #FFFFFF 0%, #F0F0F4 100%);
+    color: var(--ink); border: 1px solid var(--line);
+    box-shadow: inset 0 1px 0 #fff, 0 4px 10px -4px rgba(23,23,28,.12);
+  }
+
+  .fade-head {
+    margin: 0;
+    color: var(--head);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+  }
+  .fade-head .fade {
+    background: var(--grad-text);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .55em;
+    padding: .9em 1.5em; border-radius: 14px;
+    font: inherit; font-weight: 550; font-size: var(--step-0);
+    text-decoration: none; cursor: pointer; border: 1px solid transparent;
+    transition: transform .15s, box-shadow .15s, background-color .15s;
+  }
+  .btn-dark {
+    background: linear-gradient(120deg, #16A34A 0%, #5BAA1A 55%, #D4A20A 100%);
+    color: #fff; font-weight: 650; text-shadow: 0 1px 2px rgba(0, 40, 10, .35);
+    box-shadow: 0 10px 24px -10px rgba(101,163,13,.8), inset 0 1px 0 rgba(255,255,255,.45);
+  }
+  .btn-dark:hover { transform: translateY(-1px); box-shadow: 0 14px 28px -10px rgba(101,163,13,.9), inset 0 1px 0 rgba(255,255,255,.45); }
+  .btn-light { background: var(--card); color: var(--ink); border-color: var(--line); box-shadow: var(--shadow-sm); }
+  .btn-light:hover { background: #FAFAFC; }
+  .btn:active { transform: translateY(0); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 22px;
+    box-shadow: var(--shadow-md);
+  }
+
+  /* ---------- Header ---------- */
+  .site-header { position: relative; z-index: 20; padding: .9rem 0; }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; color: var(--ink); font-weight: 600; letter-spacing: -0.02em; }
+  .brand .tile { width: 36px; height: 36px; border-radius: 10px; font-size: .8rem; font-weight: 700; letter-spacing: 0; }
+  .nav { display: flex; align-items: center; gap: .3rem; padding: .3rem; background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow-sm); }
+  .nav a { text-decoration: none; color: var(--muted); font-size: var(--step--1); font-weight: 500; padding: .5em .9em; border-radius: 10px; }
+  .nav a:hover { color: var(--ink); background: var(--bg); }
+  .site-header .btn { padding: .65em 1.15em; font-size: var(--step--1); border-radius: 12px; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3rem, 6vw, 5rem); text-align: center; }
+  .hero::before {
+    /* the big soft circle behind the illustration */
+    content: ""; position: absolute; left: 50%; top: 58%;
+    width: min(1100px, 150vw); aspect-ratio: 1; transform: translateX(-50%);
+    border-radius: 50%; border: 1px solid #E2E2E8;
+    background: radial-gradient(closest-side, rgba(255,255,255,.75), rgba(255,255,255,0));
+    pointer-events: none; z-index: 0;
+    -webkit-mask-image: linear-gradient(to bottom, #000 22%, transparent 44%);
+    mask-image: linear-gradient(to bottom, #000 22%, transparent 44%);
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(28rem 20rem at 16% 22%, rgba(34,197,94,.20), transparent 70%),
+      radial-gradient(26rem 18rem at 86% 26%, rgba(253,224,71,.32), transparent 70%),
+      radial-gradient(30rem 20rem at 50% 88%, rgba(163,230,53,.22), transparent 70%);
+  }
+  .hero > .wrap { position: relative; z-index: 1; }
+  .hero h1 { font-size: var(--step-4); margin: 1.6rem auto 1.4rem; max-width: 12.5em; }
+  .hero h1 .line { display: block; }
+  .hero h1 .tile.main, .hero h1 .tile {
+    width: 1.02em; height: 1.02em; border-radius: .24em;
+    vertical-align: -.12em; margin: 0 .04em;
+    transform: rotate(-4deg);
+  }
+  .hero h1 .tile svg { width: .5em; height: .5em; }
+  .hero .lede { max-width: 33em; margin: 0 auto 2rem; color: var(--muted); font-size: var(--step-1); line-height: 1.45; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; }
+
+  /* Point A -> Point B illustration */
+  .journey { position: relative; max-width: 620px; height: 400px; margin: clamp(3rem, 6vw, 4.5rem) auto 0; }
+  .point {
+    position: absolute; z-index: 3;
+    display: flex; align-items: center; gap: .9rem;
+    padding: .8rem 1.4rem .8rem .8rem; text-align: left;
+  }
+  .point .tile { width: 46px; height: 46px; border-radius: 13px; }
+  .point .tile svg { width: 22px; height: 22px; }
+  .point strong { display: block; color: var(--ink); font-weight: 600; font-size: var(--step-1); letter-spacing: -0.02em; line-height: 1.2; }
+  .point span:not(.tile) { display: block; color: var(--muted); font-size: var(--step--1); }
+  .point-a { left: 0; top: 0; }
+  .point-b { right: 0; top: 26px; }
+
+  .dash { position: absolute; z-index: 1; border: 0 dashed var(--dash); }
+  .dash-a { left: 22%; top: 72px; width: 46px; height: 60px; border-left-width: 1.5px; border-bottom-width: 1.5px; border-bottom-left-radius: 10px; }
+  .dash-b { right: 26%; top: 96px; width: 46px; height: 46px; border-right-width: 1.5px; border-bottom-width: 1.5px; border-bottom-right-radius: 10px; }
+
+  .envelope { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: min(460px, 92%); height: 230px; }
+  .envelope .back { position: absolute; inset: 0; border-radius: 8px; background: linear-gradient(180deg, #EDEDF2, #E4E4EA); border: 1px solid #DCDCE3; }
+  .envelope .front {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 64%; z-index: 4;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F6F6F9 100%);
+    clip-path: polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
+    filter: drop-shadow(0 -8px 16px rgba(23,23,28,.10));
+    border-radius: 0 0 6px 6px;
+  }
+  .slip {
+    position: absolute; z-index: 2; width: 46%; padding: 14px; text-align: left;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow-md);
+  }
+  .slip-a { left: 6%; bottom: 36%; transform: rotate(-3deg); }
+  .slip-b { right: 6%; bottom: 30%; transform: rotate(5deg); }
+  .slip .who { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text); font-weight: 500; }
+  .slip .who i { width: 24px; height: 24px; border-radius: 50%; background: var(--bg-deep); display: grid; place-items: center; font-style: normal; font-size: 11px; color: var(--muted); }
+  .slip .bar { height: 6px; border-radius: 3px; background: var(--bg-deep); margin: 8px 0 0 32px; width: 55%; }
+  .slip-b .chip { background: linear-gradient(120deg, rgba(163,230,53,.25), rgba(253,224,71,.35)); border-color: rgba(132,204,22,.45); color: #1F5C14; }
+  .slip .chip {
+    display: inline-block; white-space: nowrap; margin: 18px 0 30px 0;
+    padding: .3em .7em; border-radius: 10px; border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm); background: var(--card);
+    font-size: clamp(1rem, .9rem + .6vw, 1.4rem); font-weight: 500; color: var(--ink); letter-spacing: -0.02em;
+  }
+
+  /* ---------- Sections ---------- */
+  section { padding: clamp(4rem, 9vw, 7rem) 0; }
+  .section-head { text-align: center; max-width: 44rem; margin: 0 auto clamp(2.5rem, 5vw, 3.75rem); }
+  .section-head h2 { font-size: var(--step-3); margin: 1.2rem 0 1rem; }
+  .section-head p { margin: 0 auto; max-width: 32em; color: var(--muted); font-size: var(--step-1); line-height: 1.45; }
+
+  /* Services */
+  .services-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .service { padding: 1.6rem 1.6rem 1.8rem; display: flex; flex-direction: column; }
+  .service .tile { margin-bottom: 1.4rem; }
+  .service h3 { margin: 0 0 .6rem; color: var(--ink); font-size: var(--step-2); font-weight: 550; letter-spacing: -0.035em; line-height: 1.1; }
+  .service p { margin: 0 0 1.4rem; color: var(--text); }
+  .service ul { list-style: none; margin: auto 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+  .service li { font-size: var(--step--1); padding: .35em .8em; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); color: var(--text); }
+  .tone-warm li { background: #FEF9C3; border-color: #FDE68A; color: #7A5A00; }
+  .tone-fresh li { background: #ECFCCB; border-color: #D9F99D; color: #3F6212; }
+  .service.featured { background: linear-gradient(160deg, #064E3B 0%, #15803D 55%, #4D7C0F 100%); border-color: transparent; color: #E7F7DD; box-shadow: 0 24px 48px -20px rgba(21,128,61,.6); }
+  .service.featured h3 { color: #fff; }
+  .service.featured p { color: rgba(255,255,255,.82); }
+  .service.featured .tile { background: linear-gradient(135deg, #22C55E 0%, #84CC16 55%, #D4A20A 100%); color: #fff; box-shadow: 0 8px 18px -8px rgba(0,0,0,.4); }
+  .service.featured .tile svg { filter: drop-shadow(0 1px 1.5px rgba(0,40,10,.35)); }
+  .service.featured li { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.22); color: #fff; }
+
+  /* Process: a real sequence */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; position: relative; }
+  .steps::before {
+    content: ""; position: absolute; left: 12%; right: 12%; top: 42px;
+    border-top: 2px dashed rgba(22,163,74,.4); z-index: 0;
+  }
+  .step { position: relative; z-index: 1; padding: 1.4rem; text-align: center; }
+  .step .num {
+    display: inline-grid; place-items: center; width: 40px; height: 40px; margin-bottom: 1rem;
+    border-radius: 12px; font-weight: 600; font-size: .95rem;
+  }
+  .step h3 { margin: 0 0 .4rem; color: var(--ink); font-size: var(--step-1); font-weight: 600; letter-spacing: -0.02em; }
+  .step p { margin: 0; color: var(--muted); font-size: var(--step--1); line-height: 1.5; }
+
+  /* Contact */
+  .contact-card { background: linear-gradient(#fff, #fff) padding-box, var(--grad-main) border-box; border: 1.5px solid transparent; padding: clamp(1.75rem, 5vw, 3.5rem); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); }
+  .contact-card h2 { font-size: var(--step-3); margin: 1.2rem 0 1rem; }
+  .contact-card .intro p { color: var(--muted); font-size: var(--step-1); line-height: 1.45; margin: 0 0 1.5rem; max-width: 24em; }
+  .direct { display: flex; align-items: center; gap: .8rem; padding: .7rem 1.1rem .7rem .7rem; border-radius: 16px; background: var(--bg); border: 1px solid var(--line); text-decoration: none; width: fit-content; max-width: 100%; }
+  .direct .tile { width: 40px; height: 40px; border-radius: 11px; }
+  .direct .tile svg { width: 18px; height: 18px; }
+  .direct span:not(.tile) { display: block; font-size: var(--step--1); color: var(--muted); }
+  .direct strong { display: block; color: var(--ink); font-weight: 550; word-break: break-all; }
+
+  form { display: grid; gap: 1rem; }
+  label { display: grid; gap: .4rem; font-size: var(--step--1); font-weight: 500; color: var(--ink); }
+  input, select, textarea {
+    font: inherit; font-size: var(--step-0); color: var(--ink);
+    background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+    padding: .8em 1em; width: 100%;
+    transition: border-color .15s, background-color .15s, box-shadow .15s;
+  }
+  textarea { min-height: 8em; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: none; background: var(--card); border-color: var(--violet); box-shadow: 0 0 0 4px rgba(22,163,74,.15); }
+  form .btn { width: 100%; }
+  form .btn:disabled { opacity: .7; cursor: wait; transform: none; }
+  .form-note a { color: inherit; }
+  .form-note { margin: 0; min-height: 1.4em; font-size: var(--step--1); color: var(--muted); }
+  .form-note.error { color: #B4232A; }
+
+  /* Footer */
+  .site-footer { padding: 0 0 2.5rem; font-size: var(--step--1); color: var(--muted); }
+  .site-footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .site-footer a { text-decoration: none; margin-left: 1.25rem; }
+  .site-footer a:hover { color: var(--ink); }
+
+  /* Entrance: one orchestrated moment in the hero */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero .pill, .hero h1, .hero .lede, .hero .actions { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+    .hero h1 { animation-delay: .06s; }
+    .hero .lede { animation-delay: .14s; }
+    .hero .actions { animation-delay: .2s; }
+    .point-a { animation: rise .7s .35s cubic-bezier(.2,.7,.2,1) both; }
+    .point-b { animation: rise .7s .5s cubic-bezier(.2,.7,.2,1) both; }
+    .slip-a { animation: slipA .9s .55s cubic-bezier(.2,.7,.2,1) both; }
+    .slip-b { animation: slipB .9s .7s cubic-bezier(.2,.7,.2,1) both; }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes slipA { from { opacity: 0; transform: translateY(60px) rotate(-3deg); } to { opacity: 1; transform: rotate(-3deg); } }
+  @keyframes slipB { from { opacity: 0; transform: translateY(60px) rotate(5deg); } to { opacity: 1; transform: rotate(5deg); } }
+
+  /* Responsive */
+  @media (max-width: 920px) {
+    .services-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+    .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .steps::before { display: none; }
+    .contact-card { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav { display: none; }
+    .hero h1 .line { display: inline; }
+    .journey { height: 380px; }
+    .point { padding: .6rem 1rem .6rem .6rem; gap: .7rem; }
+    .point .tile { width: 38px; height: 38px; border-radius: 11px; }
+    .point-a { left: 0; top: 0; }
+    .point-b { right: 0; top: 78px; }
+    .dash-a { left: 18%; top: 62px; height: 70px; }
+    .dash-b { right: 22%; top: 140px; height: 20px; }
+    .slip { width: 52%; padding: 11px; }
+    .slip-a { left: 2%; }
+    .slip-b { right: 2%; }
+    .steps { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top">Praveen Kumar</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#process">How I work</a>
+    </nav>
+    <a class="btn btn-dark" href="#contact">Contact me</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <span class="pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11.5V6.8a1.4 1.4 0 0 1 2.8 0v4.2M9.8 10V5.4a1.4 1.4 0 0 1 2.8 0V10m0-.6V6.2a1.4 1.4 0 0 1 2.8 0V11m0-2.6a1.4 1.4 0 0 1 2.8 0v4.8a6.2 6.2 0 0 1-6.2 6.2h-.6a6 6 0 0 1-4.6-2.1L4.4 13.4a1.5 1.5 0 0 1 2.2-2l.4.4"/><path d="M4 4.5 5.2 6M2.8 8l1.6.3"/></svg>
+        Hi, I'm Praveen Kumar
+      </span>
+
+      <h1 id="hero-title" class="fade-head">
+        <span class="line">If your product</span>
+        <span class="line">videos
+          <span class="tile main" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg></span>
+          don't sell,</span>
+        <span class="line fade">let's fix that</span>
+      </h1>
+
+      <p class="lede">I make short-form videos for ecommerce brands, plan the creative strategy behind them, and read the numbers to see what's actually selling.</p>
+
+      <div class="actions">
+        <a class="btn btn-dark" href="#contact">Contact me</a>
+        <a class="btn btn-light" href="#services">See services</a>
+      </div>
+
+      <div class="journey" aria-hidden="true">
+        <div class="card point point-a">
+          <span class="tile light">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 16.2c1-1.2 2.2-1.8 3.5-1.8s2.5.6 3.5 1.8"/><circle cx="9" cy="10" r=".6" fill="currentColor"/><circle cx="15" cy="10" r=".6" fill="currentColor"/></svg>
+          </span>
+          <div><strong>Point A</strong><span>Videos nobody watches</span></div>
+        </div>
+        <div class="card point point-b">
+          <span class="tile fresh">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5.5-5.5 4 4L21 7"/><path d="M15 7h6v6"/></svg>
+          </span>
+          <div><strong>Point B</strong><span>Videos that bring in orders</span></div>
+        </div>
+
+        <div class="dash dash-a"></div>
+        <div class="dash dash-b"></div>
+
+        <div class="envelope">
+          <div class="back"></div>
+          <div class="slip slip-a">
+            <div class="who"><i>Y</i>Your brand, today</div>
+            <div class="bar"></div>
+            <span class="chip">Random posts</span>
+          </div>
+          <div class="slip slip-b">
+            <div class="who"><i>Y</i>Your brand, next</div>
+            <div class="bar"></div>
+            <span class="chip">Daily orders</span>
+          </div>
+          <div class="front"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>
+          Services
+        </span>
+        <h2 id="services-title" class="fade-head">Three ways I help <span class="fade">your brand sell</span></h2>
+        <p>Pick one or use all three. They work best together: videos get made, tested, and improved from real results.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="card service featured">
+          <span class="tile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="3"/><path d="m15.5 10.5 5-3v9l-5-3"/></svg>
+          </span>
+          <h3>Ecommerce video creation</h3>
+          <p>Short-form videos for TikTok, Reels, Shorts and paid ads. Native-looking content with a hook in the first two seconds and the product doing the talking.</p>
+          <ul>
+            <li>UGC-style ads</li><li>Product demos</li><li>Hook variations</li><li>AI-assisted video</li><li>Organic reels</li>
+          </ul>
+        </article>
+
+        <article class="card service tone-warm">
+          <span class="tile warm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/></svg>
+          </span>
+          <h3>Creative strategy</h3>
+          <p>I work out who your buyer is, which angles reach them, and what competitors are already proving works. You get a clear plan of what to make and why.</p>
+          <ul>
+            <li>Audience research</li><li>Ad angles and hooks</li><li>Competitor teardown</li><li>Scripts and shot lists</li>
+          </ul>
+        </article>
+
+        <article class="card service tone-fresh">
+          <span class="tile fresh">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+          </span>
+          <h3>Business analysis</h3>
+          <p>I look at your store, ads and margins together and show you where money is leaking, with a short list of fixes ranked by how much they'll move revenue.</p>
+          <ul>
+            <li>Store and funnel review</li><li>Ad performance reports</li><li>Pricing checks</li><li>Unit economics</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg>
+          How I work
+        </span>
+        <h2 id="process-title" class="fade-head">A simple loop <span class="fade">that keeps improving</span></h2>
+      </div>
+      <ol class="steps">
+        <li class="card step"><span class="tile num cool">1</span><h3>Call</h3><p>We talk through your product, your customers and what you've tried so far.</p></li>
+        <li class="card step"><span class="tile num warm">2</span><h3>Plan</h3><p>I put together the angles, hooks and scripts worth testing first.</p></li>
+        <li class="card step"><span class="tile num main">3</span><h3>Create</h3><p>I produce the videos, ready to post or run as ads.</p></li>
+        <li class="card step"><span class="tile num fresh">4</span><h3>Review</h3><p>We check the results, keep what works and build the next batch from it.</p></li>
+      </ol>
+    </div>
+  </section>
+
+
+  <!-- Contact -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="card contact-card">
+        <div class="intro">
+          <span class="pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.4 7.5L3 21l1.5-5.6A8.5 8.5 0 1 1 21 12Z"/></svg>
+            Contact me
+          </span>
+          <h2 id="contact-title" class="fade-head">Ready to sell more? <span class="fade">Say hello</span></h2>
+          <p>Tell me about your brand and what you need. I'll reply within a day or two.</p>
+          <a class="direct" id="email-link" href="#">
+            <span class="tile cool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
+            <span><span>Email me directly</span><strong id="email-text">praveenkr2702@gmail.com</strong></span>
+          </a>
+        </div>
+
+        <form id="contact-form" novalidate>
+          <label>Your name
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label>Your email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>What do you need help with?
+            <select name="service">
+              <option>Ecommerce video creation</option>
+              <option>Creative strategy</option>
+              <option>Business analysis</option>
+              <option>A mix of these</option>
+            </select>
+          </label>
+          <label>Tell me about your brand
+            <textarea name="message" required placeholder="What you sell, where you sell it, and what you'd like to improve"></textarea>
+          </label>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <button class="btn btn-dark" type="submit">Send message</button>
+          <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© <span id="year"></span> Praveen Kumar</span>
+    <span><a href="#services">Services</a><a href="#contact">Contact me</a></span>
+  </div>
+</footer>
+
+<script>
+  /* ====== EDIT THIS: your contact email ====== */
+  const CONTACT_EMAIL = "praveenkr2702@gmail.com";
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  document.getElementById("email-text").textContent = CONTACT_EMAIL;
+  document.getElementById("email-link").href = "mailto:" + CONTACT_EMAIL;
+
+  /* Contact form: sends the message straight to your inbox through FormSubmit (free, no account needed).
+     The first time someone sends a message, FormSubmit emails CONTACT_EMAIL an activation link.
+     Click it once, and every message after that arrives in your inbox. */
+  const form = document.getElementById("contact-form");
+  const note = document.getElementById("form-note");
+  const sendBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const d = new FormData(form);
+    const name = (d.get("name") || "").trim();
+    const email = (d.get("email") || "").trim();
+    const message = (d.get("message") || "").trim();
+    const service = d.get("service");
+    note.classList.remove("error");
+
+    if (d.get("_honey")) return; // spam bot filled the hidden field
+
+    if (!name || !email || !message) {
+      note.textContent = "Add your name, email and a short message, then press Send message.";
+      note.classList.add("error");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      note.textContent = "That email address doesn't look complete. Check it and try again.";
+      note.classList.add("error");
+      return;
+    }
+    if (CONTACT_EMAIL.includes("example.com")) {
+      note.textContent = "This form isn't set up yet. Add your email address to CONTACT_EMAIL in the code.";
+      note.classList.add("error");
+      return;
+    }
+
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Sending...";
+    note.textContent = "";
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONTACT_EMAIL), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({
+          name, email, service, message,
+          _subject: "New website enquiry: " + service,
+          _template: "table"
+        })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) !== "true") throw new Error(data.message || "Send failed");
+
+      form.reset();
+      note.textContent = "Message sent. I'll get back to you within a day or two.";
+      sendBtn.textContent = "Sent";
+      setTimeout(() => { sendBtn.textContent = "Send message"; sendBtn.disabled = false; }, 4000);
+    } catch (err) {
+      note.innerHTML = 'The message didn\'t go through. Check your connection and try again, or email me at <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a>.';
+      note.classList.add("error");
+      sendBtn.textContent = "Send message";
+      sendBtn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
